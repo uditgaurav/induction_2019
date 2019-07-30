@@ -11,4 +11,16 @@ spec:
     image: redis
     ports:
     - containerPort: 6379
-    
+    volumeMounts:
+    - name: redis-data
+      mountPath: /data
+volumeClaimTemplates:
+- metadata:
+    name: redis-data
+    annotations:
+      volume.beta.kubernetes.io/storage-class: openebs-standard
+  spec:
+    accessModes: ["ReadWriteOnce"]
+    resources:
+      requests:
+        storage: 5G    

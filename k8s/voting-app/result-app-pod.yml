@@ -11,16 +11,3 @@ spec:
     image: dockersamples/examplevotingapp_result
     ports:
     - containerPort: 80
-    volumeMounts:
-    - name: redis-data
-      mountPath: /data
-volumeClaimTemplates:
-- metadata:
-    name: redis-data
-    annotations:
-      volume.beta.kubernetes.io/storage-class: openebs-standard
-  spec:
-    accessModes: ["ReadWriteOnce"]
-    resources:
-      requests:
-        storage: 5G
